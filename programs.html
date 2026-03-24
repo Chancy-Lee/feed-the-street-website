@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What We Do - Feed the Street Charity Organisation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #E8622A;
+            --primary-dark: #C84E1A;
+            --primary-light: #FFF0E8;
+            --gray-50: #F8F8F8;
+            --gray-100: #F2F2F2;
+            --gray-200: #E8E8E8;
+            --gray-400: #B0B0B0;
+            --gray-600: #6B6B6B;
+            --gray-800: #2D2D2D;
+            --black: #111111;
+            --white: #FFFFFF;
+            --radius: 12px;
+            --radius-lg: 20px;
+            --shadow: 0 2px 8px rgba(0,0,0,.08), 0 8px 32px rgba(0,0,0,.06);
+            --shadow-lg: 0 4px 16px rgba(0,0,0,.10), 0 16px 48px rgba(0,0,0,.08);
+            --transition: .25s cubic-bezier(.4,0,.2,1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--white);
+            color: var(--gray-800);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255,255,255,.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--gray-200);
+            height: 70px;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--black);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--black);
+        }
+
+        .nav-cta {
+            background: var(--primary);
+            color: white !important;
+            padding: 10px 20px;
+            border-radius: 99px;
+            font-weight: 600;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--black);
+            cursor: pointer;
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 140px 24px 80px;
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            color: var(--black);
+            margin-bottom: 16px;
+        }
+
+        .page-header p {
+            color: var(--gray-600);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        /* Content Sections */
+        section {
+            padding: 80px 24px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--primary);
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 24px;
+        }
+
+        /* Programs Grid */
+        .programs-section {
+            background: white;
+        }
+
+        .program-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+            margin-bottom: 80px;
+        }
+
+        .program-card:nth-child(even) {
+            direction: rtl;
+        }
+
+        .program-card:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        .program-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--radius-lg);
+        }
+
+        .program-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: transform var(--transition);
+        }
+
+        .program-card:hover .program-image img {
+            transform: scale(1.05);
+        }
+
+        .program-tag {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--primary);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 99px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .program-content h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 16px;
+        }
+
+        .program-content p {
+            color: var(--gray-600);
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        .program-features {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .program-features li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--gray-800);
+            font-weight: 500;
+        }
+
+        .program-features i {
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        /* Who We Help */
+        .who-we-help {
+            background: var(--gray-50);
+        }
+
+        .help-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .help-card {
+            background: white;
+            padding: 40px 32px;
+            border-radius: var(--radius-lg);
+            text-align: center;
+            border: 1px solid var(--gray-200);
+            transition: all var(--transition);
+        }
+
+        .help-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .help-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            color: var(--primary);
+            font-size: 2rem;
+            transition: all var(--transition);
+        }
+
+        .help-card:hover .help-icon {
+            background: var(--primary);
+            color: white;
+        }
+
+        .help-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--black);
+        }
+
+        .help-card p {
+            color: var(--gray-600);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Operation Areas */
+        .operation-areas {
+            background: white;
+        }
+
+        .areas-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .area-card {
+            background: var(--gray-50);
+            padding: 32px;
+            border-radius: var(--radius-lg);
+            border-left: 4px solid var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: all var(--transition);
+        }
+
+        .area-card:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateX(8px);
+        }
+
+        .area-card:hover h3,
+        .area-card:hover p {
+            color: white;
+        }
+
+        .area-card:hover .area-icon {
+            background: rgba(255,255,255,.2);
+            color: white;
+        }
+
+        .area-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            transition: all var(--transition);
+        }
+
+        .area-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 4px;
+            transition: color var(--transition);
+        }
+
+        .area-card p {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            transition: color var(--transition);
+        }
+
+        /* Frequency */
+        .frequency {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+        }
+
+        .frequency .section-label {
+            color: rgba(255,255,255,.8);
+        }
+
+        .frequency .section-label::before {
+            background: rgba(255,255,255,.5);
+        }
+
+        .frequency .section-title {
+            color: white;
+        }
+
+        .frequency p {
+            color: rgba(255,255,255,.8);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .frequency-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .frequency-card {
+            background: rgba(255,255,255,.1);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(255,255,255,.2);
+        }
+
+        .frequency-card i {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+            opacity: 0.9;
+        }
+
+        .frequency-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .frequency-card p {
+            color: rgba(255,255,255,.7);
+            margin: 0;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            color: rgba(255,255,255,.6);
+            padding: 64px 24px 32px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: white;
+            margin-bottom: 16px;
+        }
+
+        .footer-brand span {
+            color: var(--primary);
+        }
+
+        .footer-desc {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            max-width: 300px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-col a {
+            color: rgba(255,255,255,.6);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-col a:hover {
+            color: white;
+        }
+
+        .footer-col a i {
+            font-size: 0.7rem;
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,.1);
+            padding-top: 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-bottom-links a {
+            color: rgba(255,255,255,.4);
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+
+        .footer-bottom-links a:hover {
+            color: rgba(255,255,255,.8);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background: white;
+            border-bottom: 1px solid var(--gray-200);
+            padding: 24px;
+            z-index: 999;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 16px;
+            color: var(--gray-800);
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .mobile-menu a:last-child {
+            border-bottom: none;
+            background: var(--primary);
+            color: white;
+            border-radius: var(--radius);
+            margin-top: 16px;
+            text-align: center;
+        }
+
+        @media (max-width: 968px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .program-card {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .program-card:nth-child(even) {
+                direction: ltr;
+            }
+
+            .help-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .areas-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .frequency-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 99px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all var(--transition);
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 16px rgba(232,98,42,.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-white {
+            background: white;
+            color: var(--primary);
+        }
+
+        .btn-white:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,.2);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-hand-holding-heart"></i>
+                </div>
+                Feed<span>theStreet</span>
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="programs.html">What We Do</a></li>
+                <li><a href="impact.html">Impact</a></li>
+                <li><a href="get-involved.html">Get Involved</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+            </ul>
+
+            <button class="mobile-menu-btn" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="about.html">About Us</a>
+        <a href="programs.html">What We Do</a>
+        <a href="impact.html">Impact</a>
+        <a href="get-involved.html">Get Involved</a>
+        <a href="events.html">Events</a>
+        <a href="contact.html">Contact Us</a>
+    </div>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <div class="section-label">Our Programs</div>
+            <h1>What We Do</h1>
+            <p>We provide essential support to vulnerable individuals through targeted programs designed to meet immediate needs and restore dignity.</p>
+        </div>
+    </header>
+
+    <!-- Programs Detail -->
+    <section class="programs-section">
+        <div class="container">
+            <!-- Program 1 -->
+            <div class="program-card">
+                <div class="program-image">
+                    <img src="assets/photo5.png" alt="Street feeding">
+                    <span class="program-tag">Monthly Program</span>
+                </div>
+                <div class="program-content">
+                    <h3>Street Feeding Programs</h3>
+                    <p>Our flagship program involves regular mobile food distribution to homeless and vulnerable individuals in Lilongwe. We prepare and deliver hot meals, fresh produce, and hygiene kits directly to those who need them most.</p>
+                    <ul class="program-features">
+                        <li><i class="fas fa-check-circle"></i> Hot meals prepared fresh</li>
+                        <li><i class="fas fa-check-circle"></i> Distribution in Bwandilo, Kanengo & other areas</li>
+                        <li><i class="fas fa-check-circle"></i> Hygiene kits included</li>
+                        <li><i class="fas fa-check-circle"></i> Dignified service approach</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Program 2 -->
+            <div class="program-card">
+                <div class="program-image">
+                    <img src="assets/clothes.png" alt="Clothes distribution">
+                    <span class="program-tag">Essential Support</span>
+                </div>
+                <div class="program-content">
+                    <h3>Clothes & Essential Items</h3>
+                    <p>Beyond food, we distribute clothing, shoes, blankets, and other basic necessities to help protect vulnerable individuals from the elements and provide comfort.</p>
+                    <ul class="program-features">
+                        <li><i class="fas fa-check-circle"></i> Clothing and shoes</li>
+                        <li><i class="fas fa-check-circle"></i> Blankets for cold nights</li>
+                        <li><i class="fas fa-check-circle"></i> Personal hygiene items</li>
+                        <li><i class="fas fa-check-circle"></i> Seasonal appropriate items</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Program 3 -->
+            <div class="program-card">
+                <div class="program-image">
+                    <img src="assets/kanengo.png" alt="Community outreach">
+                    <span class="program-tag">Community</span>
+                </div>
+                <div class="program-content">
+                    <h3>Community Outreach & Support</h3>
+                    <p>We partner with local organizations to host community feeding events, provide guidance and counseling, and connect individuals with resources to help rebuild their lives.</p>
+                    <ul class="program-features">
+                        <li><i class="fas fa-check-circle"></i> Family reconnection support</li>
+                        <li><i class="fas fa-check-circle"></i> Resource referrals</li>
+                        <li><i class="fas fa-check-circle"></i> Emotional support</li>
+                        <li><i class="fas fa-check-circle"></i> Community integration</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Program 4 -->
+            <div class="program-card">
+                <div class="program-image">
+                    <img src="assets/photo1.png" alt="Emergency feeding">
+                    <span class="program-tag">Emergency</span>
+                </div>
+                <div class="program-content">
+                    <h3>Emergency Feeding Programs</h3>
+                    <p>Rapid-response support during crises — natural disasters, economic shocks, and emergencies — ensuring no community goes hungry in their darkest hour.</p>
+                    <ul class="program-features">
+                        <li><i class="fas fa-check-circle"></i> Rapid response capability</li>
+                        <li><i class="fas fa-check-circle"></i> Crisis support</li>
+                        <li><i class="fas fa-check-circle"></i> Flexible deployment</li>
+                        <li><i class="fas fa-check-circle"></i> 24/7 availability for emergencies</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Who We Help -->
+    <section class="who-we-help">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 16px;">
+                <div class="section-label">Our Focus</div>
+                <h2 class="section-title" style="margin-bottom: 0;">Who We Help</h2>
+            </div>
+
+            <div class="help-grid">
+                <div class="help-card">
+                    <div class="help-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>People Living on the Streets</h3>
+                    <p>Homeless individuals in Lilongwe who lack regular access to food and basic necessities.</p>
+                </div>
+
+                <div class="help-card">
+                    <div class="help-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Vulnerable Families</h3>
+                    <p>Low-income families struggling to meet their basic needs and provide for their children.</p>
+                </div>
+
+                <div class="help-card">
+                    <div class="help-icon">
+                        <i class="fas fa-user-injured"></i>
+                    </div>
+                    <h3>Crisis-Affected Individuals</h3>
+                    <p>Those affected by emergencies, disasters, or sudden economic hardships.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Operation Areas -->
+    <section class="operation-areas">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 16px;">
+                <div class="section-label">Where We Work</div>
+                <h2 class="section-title" style="margin-bottom: 0;">Areas of Operation</h2>
+                <p style="color: var(--gray-600); max-width: 600px; margin: 16px auto 0;">Our activities mainly take place in Lilongwe, especially in areas with high numbers of street-connected people.</p>
+            </div>
+
+            <div class="areas-grid">
+                <div class="area-card">
+                    <div class="area-icon">
+                        <i class="fas fa-map-pin"></i>
+                    </div>
+                    <div>
+                        <h3>Lilongwe</h3>
+                        <p>Primary distribution City</p>
+                    </div>
+                </div>
+
+                <div class="area-card">
+                    <div class="area-icon">
+                        <i class="fas fa-map-pin"></i>
+                    </div>
+                    <div>
+                        <h3>Kanengo</h3>
+                        <p>Regular outreach location</p>
+                    </div>
+                </div>
+
+                <div class="area-card">
+                    <div class="area-icon">
+                        <i class="fas fa-map-pin"></i>
+                    </div>
+                    <div>
+                        <h3>Dowa</h3>
+                        <p>Emergency feeding programs</p>
+                    </div>
+                </div>
+
+                <div class="area-card">
+                    <div class="area-icon">
+                        <i class="fas fa-map-pin"></i>
+                    </div>
+                    <div>
+                        <h3>Other High-Need Areas</h3>
+                        <p>Expanding reach across Lilongwe</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Frequency -->
+    <section class="frequency">
+        <div class="container">
+            <div class="section-label">When We Serve</div>
+            <h2 class="section-title">Program Frequency</h2>
+            <p>Our programs are designed to provide consistent, reliable support to those who need it most.</p>
+
+            <div class="frequency-cards">
+                <div class="frequency-card">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h3>Monthly Programs</h3>
+                    <p>Regular monthly feeding programs and essential item distributions</p>
+                </div>
+
+                <div class="frequency-card">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Special Events</h3>
+                    <p>Special outreach events during holidays, crises, or community celebrations</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 48px;">
+                <a href="events.html" class="btn btn-white">
+                    View Upcoming Events
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-brand">
+                        <i class="fas fa-hand-holding-heart" style="color: var(--primary);"></i>
+                        Feed<span>theStreet</span>
+                    </div>
+                    <p class="footer-desc">Ending hunger on the streets of Lilongwe through compassionate action, community partnership, and transparent impact.</p>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="programs.html"><i class="fas fa-chevron-right"></i> Programs</a></li>
+                        <li><a href="impact.html"><i class="fas fa-chevron-right"></i> Our Impact</a></li>
+                        <li><a href="events.html"><i class="fas fa-chevron-right"></i> Events</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Get Involved</h4>
+                    <ul>
+                        <li><a href="get-involved.html#donate"><i class="fas fa-chevron-right"></i> Donate</a></li>
+                        <li><a href="get-involved.html#volunteer"><i class="fas fa-chevron-right"></i> Volunteer</a></li>
+                        <li><a href="get-involved.html#partner"><i class="fas fa-chevron-right"></i> Partner</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul>
+                        <li><a href="tel:+265999454328"><i class="fas fa-phone"></i> +265 999 454 328</a></li>
+                        <li><a href="mailto:mwendamygo@gmail.com"><i class="fas fa-envelope"></i> mwendamygo@gmail.com</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Lilongwe, Malawi</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <span>© 2026 Feed the Street Charity Organisation. All rights reserved.</span>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Use</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('mobileMenu').classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

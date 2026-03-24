@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events - Feed the Street Charity Organisation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #E8622A;
+            --primary-dark: #C84E1A;
+            --primary-light: #FFF0E8;
+            --gray-50: #F8F8F8;
+            --gray-100: #F2F2F2;
+            --gray-200: #E8E8E8;
+            --gray-400: #B0B0B0;
+            --gray-600: #6B6B6B;
+            --gray-800: #2D2D2D;
+            --black: #111111;
+            --white: #FFFFFF;
+            --radius: 12px;
+            --radius-lg: 20px;
+            --shadow: 0 2px 8px rgba(0,0,0,.08), 0 8px 32px rgba(0,0,0,.06);
+            --shadow-lg: 0 4px 16px rgba(0,0,0,.10), 0 16px 48px rgba(0,0,0,.08);
+            --transition: .25s cubic-bezier(.4,0,.2,1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--white);
+            color: var(--gray-800);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255,255,255,.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--gray-200);
+            height: 70px;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--black);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--black);
+        }
+
+        .nav-cta {
+            background: var(--primary);
+            color: white !important;
+            padding: 10px 20px;
+            border-radius: 99px;
+            font-weight: 600;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--black);
+            cursor: pointer;
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 140px 24px 80px;
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            color: var(--black);
+            margin-bottom: 16px;
+        }
+
+        .page-header p {
+            color: var(--gray-600);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        /* Content Sections */
+        section {
+            padding: 80px 24px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--primary);
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 24px;
+        }
+
+        /* Events List */
+        .events-section {
+            background: white;
+        }
+
+        .event-card {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 32px;
+            background: var(--gray-50);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            margin-bottom: 24px;
+            transition: all var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .event-card:hover {
+            background: white;
+            border-color: var(--primary);
+            box-shadow: var(--shadow-lg);
+            transform: translateX(8px);
+        }
+
+        .event-date {
+            background: var(--primary);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 32px;
+            text-align: center;
+        }
+
+        .event-date .month {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+            opacity: 0.9;
+        }
+
+        .event-date .day {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1;
+            margin: 8px 0;
+        }
+
+        .event-date .year {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .event-content {
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .event-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 6px 14px;
+            border-radius: 99px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+            width: fit-content;
+        }
+
+        .event-content h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 12px;
+        }
+
+        .event-content p {
+            color: var(--gray-600);
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+
+        .event-meta {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .event-meta span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gray-600);
+            font-size: 0.9rem;
+        }
+
+        .event-meta i {
+            color: var(--primary);
+        }
+
+        /* Past Events */
+        .past-events {
+            background: var(--gray-50);
+        }
+
+        .past-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .past-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all var(--transition);
+        }
+
+        .past-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .past-image {
+            height: 200px;
+            background: var(--gray-200);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .past-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .past-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: var(--primary);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 99px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .past-content {
+            padding: 24px;
+        }
+
+        .past-content h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--black);
+        }
+
+        .past-content p {
+            color: var(--gray-600);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Participate */
+        .participate {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+        }
+
+        .participate .section-label {
+            color: rgba(255,255,255,.8);
+        }
+
+        .participate .section-label::before {
+            background: rgba(255,255,255,.5);
+        }
+
+        .participate .section-title {
+            color: white;
+        }
+
+        .participate p {
+            color: rgba(255,255,255,.8);
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+
+        .participate-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .participate-card {
+            background: rgba(255,255,255,.1);
+            backdrop-filter: blur(10px);
+            padding: 32px;
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(255,255,255,.2);
+            transition: all var(--transition);
+        }
+
+        .participate-card:hover {
+            background: rgba(255,255,255,.2);
+            transform: translateY(-4px);
+        }
+
+        .participate-card i {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+
+        .participate-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .participate-card p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            color: rgba(255,255,255,.6);
+            padding: 64px 24px 32px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: white;
+            margin-bottom: 16px;
+        }
+
+        .footer-brand span {
+            color: var(--primary);
+        }
+
+        .footer-desc {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            max-width: 300px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-col a {
+            color: rgba(255,255,255,.6);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-col a:hover {
+            color: white;
+        }
+
+        .footer-col a i {
+            font-size: 0.7rem;
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,.1);
+            padding-top: 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-bottom-links a {
+            color: rgba(255,255,255,.4);
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+
+        .footer-bottom-links a:hover {
+            color: rgba(255,255,255,.8);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background: white;
+            border-bottom: 1px solid var(--gray-200);
+            padding: 24px;
+            z-index: 999;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 16px;
+            color: var(--gray-800);
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .mobile-menu a:last-child {
+            border-bottom: none;
+            background: var(--primary);
+            color: white;
+            border-radius: var(--radius);
+            margin-top: 16px;
+            text-align: center;
+        }
+
+        @media (max-width: 968px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .event-card {
+                grid-template-columns: 1fr;
+            }
+
+            .event-date {
+                flex-direction: row;
+                padding: 20px;
+                gap: 12px;
+            }
+
+            .event-date .day {
+                font-size: 2rem;
+                margin: 0;
+            }
+
+            .past-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .participate-options {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 99px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all var(--transition);
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-white {
+            background: white;
+            color: var(--primary);
+        }
+
+        .btn-white:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,.2);
+        }
+
+        .btn-outline-white {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255,255,255,.5);
+        }
+
+        .btn-outline-white:hover {
+            background: white;
+            color: var(--primary);
+            border-color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-hand-holding-heart"></i>
+                </div>
+                Feed<span>theStreet</span>
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="programs.html">What We Do</a></li>
+                <li><a href="impact.html">Impact</a></li>
+                <li><a href="get-involved.html">Get Involved</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+            </ul>
+
+            <button class="mobile-menu-btn" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="about.html">About Us</a>
+        <a href="programs.html">What We Do</a>
+        <a href="impact.html">Impact</a>
+        <a href="get-involved.html">Get Involved</a>
+        <a href="events.html">Events</a>
+        <a href="contact.html">Contact Us</a>
+    </div>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <div class="section-label">Activities</div>
+            <h1>Events & Activities</h1>
+            <p>Join us for our regular feeding programs and special outreach events. Together, we can make a difference in the lives of vulnerable communities.</p>
+        </div>
+    </header>
+
+    <!-- Upcoming Events -->
+    <section class="events-section">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 48px;">
+                <div class="section-label">Coming Up</div>
+                <h2 class="section-title" style="margin-bottom: 0;">Upcoming Events</h2>
+                <p style="color: var(--gray-600); margin-top: 16px;">Regular monthly feeding programs (dates shared through our communication channels)</p>
+            </div>
+
+            <div class="event-card">
+                <div class="event-date">
+                    <span class="month">Monthly</span>
+                    <span class="day">TBD</span>
+                    <span class="year">2026</span>
+                </div>
+                <div class="event-content">
+                    <span class="event-tag">
+                        <i class="fas fa-calendar"></i>
+                        Regular Program
+                    </span>
+                    <h3>Monthly Street Feeding Program</h3>
+                    <p>Our regular monthly feeding program serving hot meals and essential supplies to homeless individuals and vulnerable families in Lilongwe.</p>
+                    <div class="event-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> Bwandilo, Kanengo & other areas</span>
+                        <span><i class="fas fa-clock"></i> Time TBD</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="event-card">
+                <div class="event-date">
+                    <span class="month">Special</span>
+                    <span class="day">TBD</span>
+                    <span class="year">2026</span>
+                </div>
+                <div class="event-content">
+                    <span class="event-tag">
+                        <i class="fas fa-star"></i>
+                        Special Outreach
+                    </span>
+                    <h3>Community Outreach Event</h3>
+                    <p>A special outreach event including food distribution, clothes donation, and community engagement activities.</p>
+                    <div class="event-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> Lilongwe City</span>
+                        <span><i class="fas fa-users"></i> Open to volunteers</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="event-card">
+                <div class="event-date">
+                    <span class="month">Emergency</span>
+                    <span class="day">24/7</span>
+                    <span class="year">2026</span>
+                </div>
+                <div class="event-content">
+                    <span class="event-tag">
+                        <i class="fas fa-bolt"></i>
+                        Emergency Response
+                    </span>
+                    <h3>Emergency Feeding Program</h3>
+                    <p>Rapid-response support during crises, natural disasters, or economic shocks. Available 24/7 when emergencies arise.</p>
+                    <div class="event-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> As needed</span>
+                        <span><i class="fas fa-phone"></i> Contact us for emergencies</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: var(--primary-light); padding: 24px; border-radius: var(--radius-lg); margin-top: 32px; text-align: center;">
+                <p style="margin: 0; color: var(--black);"><i class="fas fa-info-circle" style="color: var(--primary); margin-right: 8px;"></i>Exact dates for monthly programs are shared through our Facebook/WhatsApp channels. Follow us to stay updated!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Past Events -->
+    <section class="past-events">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 48px;">
+                <div class="section-label">Previous Activities</div>
+                <h2 class="section-title" style="margin-bottom: 0;">Past Events</h2>
+                <p style="color: var(--gray-600); margin-top: 16px;">Highlights from our recent outreach programs</p>
+            </div>
+
+            <div class="past-grid">
+                <div class="past-card">
+                    <div class="past-image">
+                        <img src="assets/bwandilo.png" alt="Street feeding">
+                        <span class="past-badge">Completed</span>
+                    </div>
+                    <div class="past-content">
+                        <h3>Street Feeding - Bwandilo</h3>
+                        <p>Successfully distributed meals and essential supplies to homeless individuals in the Bwandilo area.</p>
+                    </div>
+                </div>
+
+                <div class="past-card">
+                    <div class="past-image">
+                        <img src="assets/clothes.png" alt="Clothes distribution">
+                        <span class="past-badge">Completed</span>
+                    </div>
+                    <div class="past-content">
+                        <h3>Clothes & Essentials Drive</h3>
+                        <p>Collected and distributed clothing, blankets, and hygiene items to vulnerable community members.</p>
+                    </div>
+                </div>
+
+                <div class="past-card">
+                    <div class="past-image">
+                        <img src="assets/kanengo.png" alt="Community outreach">
+                        <span class="past-badge">Completed</span>
+                    </div>
+                    <div class="past-content">
+                        <h3>Community Outreach - Kanengo</h3>
+                        <p>Engaged with the Kanengo community through feeding programs and family reconnection support.</p>
+                    </div>
+                </div>
+
+                <div class="past-card">
+                    <div class="past-image">
+                        <img src="assets/reunion.png" alt="Success story">
+                        <span class="past-badge">Impact</span>
+                    </div>
+                    <div class="past-content">
+                        <h3>Family Reunion Support</h3>
+                        <p>Supported a young man in reconnecting with his family through sustained guidance and assistance.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Participate -->
+    <section class="participate">
+        <div class="container">
+            <div class="section-label">Join Us</div>
+            <h2 class="section-title">How to Participate</h2>
+            <p>People can participate in our events by volunteering their time or donating resources. Every contribution makes a difference.</p>
+
+            <div class="participate-options">
+                <div class="participate-card">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <h3>Volunteer</h3>
+                    <p>Help with meal prep, distribution, and outreach activities</p>
+                </div>
+                <div class="participate-card">
+                    <i class="fas fa-donate"></i>
+                    <h3>Donate</h3>
+                    <p>Contribute food, clothes, or funds to support our events</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 48px;">
+                <a href="get-involved.html" class="btn btn-white">
+                    <i class="fas fa-arrow-right"></i>
+                    Get Involved
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-brand">
+                        <i class="fas fa-hand-holding-heart" style="color: var(--primary);"></i>
+                        Feed<span>theStreet</span>
+                    </div>
+                    <p class="footer-desc">Ending hunger on the streets of Lilongwe through compassionate action, community partnership, and transparent impact.</p>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="programs.html"><i class="fas fa-chevron-right"></i> Programs</a></li>
+                        <li><a href="impact.html"><i class="fas fa-chevron-right"></i> Our Impact</a></li>
+                        <li><a href="events.html"><i class="fas fa-chevron-right"></i> Events</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Get Involved</h4>
+                    <ul>
+                        <li><a href="get-involved.html#donate"><i class="fas fa-chevron-right"></i> Donate</a></li>
+                        <li><a href="get-involved.html#volunteer"><i class="fas fa-chevron-right"></i> Volunteer</a></li>
+                        <li><a href="get-involved.html#partner"><i class="fas fa-chevron-right"></i> Partner</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul>
+                        <li><a href="tel:+265999454328"><i class="fas fa-phone"></i> +265 999 454 328</a></li>
+                        <li><a href="mailto:mwendamygo@gmail.com"><i class="fas fa-envelope"></i> mwendamygo@gmail.com</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Lilongwe, Malawi</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <span>© 2026 Feed the Street Charity Organisation. All rights reserved.</span>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Use</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('mobileMenu').classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

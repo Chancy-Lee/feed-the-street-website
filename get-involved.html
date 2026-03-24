@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Involved - Feed the Street Charity Organisation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #E8622A;
+            --primary-dark: #C84E1A;
+            --primary-light: #FFF0E8;
+            --gray-50: #F8F8F8;
+            --gray-100: #F2F2F2;
+            --gray-200: #E8E8E8;
+            --gray-400: #B0B0B0;
+            --gray-600: #6B6B6B;
+            --gray-800: #2D2D2D;
+            --black: #111111;
+            --white: #FFFFFF;
+            --radius: 12px;
+            --radius-lg: 20px;
+            --shadow: 0 2px 8px rgba(0,0,0,.08), 0 8px 32px rgba(0,0,0,.06);
+            --shadow-lg: 0 4px 16px rgba(0,0,0,.10), 0 16px 48px rgba(0,0,0,.08);
+            --transition: .25s cubic-bezier(.4,0,.2,1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--white);
+            color: var(--gray-800);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255,255,255,.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--gray-200);
+            height: 70px;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--black);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--black);
+        }
+
+        .nav-cta {
+            background: var(--primary);
+            color: white !important;
+            padding: 10px 20px;
+            border-radius: 99px;
+            font-weight: 600;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--black);
+            cursor: pointer;
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 140px 24px 80px;
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            color: var(--black);
+            margin-bottom: 16px;
+        }
+
+        .page-header p {
+            color: var(--gray-600);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        /* Content Sections */
+        section {
+            padding: 80px 24px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--primary);
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 24px;
+        }
+
+        /* Ways to Help */
+        .ways-to-help {
+            background: white;
+        }
+
+        .help-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .help-card {
+            background: var(--gray-50);
+            border-radius: var(--radius-lg);
+            padding: 48px 32px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all var(--transition);
+            position: relative;
+        }
+
+        .help-card:hover {
+            background: white;
+            border-color: var(--primary);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-8px);
+        }
+
+        .help-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-light);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            color: var(--primary);
+            font-size: 2rem;
+            transition: all var(--transition);
+        }
+
+        .help-card:hover .help-icon {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .help-card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--black);
+        }
+
+        .help-card p {
+            color: var(--gray-600);
+            margin-bottom: 24px;
+            line-height: 1.7;
+        }
+
+        /* Donate Section */
+        .donate-section {
+            background: var(--primary);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .donate-section::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,255,255,.1), transparent 70%);
+            border-radius: 50%;
+        }
+
+        .donate-section .section-label {
+            color: rgba(255,255,255,.8);
+        }
+
+        .donate-section .section-label::before {
+            background: rgba(255,255,255,.5);
+        }
+
+        .donate-section .section-title {
+            color: white;
+        }
+
+        .donate-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .donate-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 24px;
+        }
+
+        .donate-info p {
+            color: rgba(255,255,255,.8);
+            margin-bottom: 24px;
+            line-height: 1.8;
+        }
+
+        .donate-methods {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .donate-methods li {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: rgba(255,255,255,.1);
+            padding: 20px;
+            border-radius: var(--radius);
+            backdrop-filter: blur(10px);
+        }
+
+        .donate-methods i {
+            font-size: 1.5rem;
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .donate-methods strong {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .donate-methods span {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,.7);
+        }
+
+        .donation-types {
+            background: white;
+            color: var(--gray-800);
+            padding: 40px;
+            border-radius: var(--radius-lg);
+        }
+
+        .donation-types h3 {
+            font-size: 1.3rem;
+            margin-bottom: 24px;
+            color: var(--black);
+        }
+
+        .donation-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .donation-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            background: var(--gray-50);
+            border-radius: var(--radius);
+            transition: all var(--transition);
+        }
+
+        .donation-list li:hover {
+            background: var(--primary-light);
+        }
+
+        .donation-list i {
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        /* Volunteer Section */
+        .volunteer-section {
+            background: var(--gray-50);
+        }
+
+        .volunteer-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .volunteer-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--black);
+        }
+
+        .volunteer-info p {
+            color: var(--gray-600);
+            margin-bottom: 24px;
+            line-height: 1.8;
+        }
+
+        .volunteer-benefits {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .volunteer-benefits li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--gray-800);
+            font-weight: 500;
+        }
+
+        .volunteer-benefits i {
+            color: var(--primary);
+        }
+
+        .volunteer-form {
+            background: white;
+            padding: 40px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+        }
+
+        .volunteer-form h3 {
+            margin-bottom: 24px;
+            color: var(--black);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius);
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            transition: border-color var(--transition);
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--primary);
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        /* Partnership */
+        .partnership-section {
+            background: white;
+        }
+
+        .partnership-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .partnership-content > p {
+            color: var(--gray-600);
+            margin-bottom: 48px;
+            line-height: 1.8;
+        }
+
+        .partnership-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+
+        .partnership-card {
+            padding: 32px;
+            background: var(--gray-50);
+            border-radius: var(--radius-lg);
+            border: 2px solid transparent;
+            transition: all var(--transition);
+        }
+
+        .partnership-card:hover {
+            border-color: var(--primary);
+            background: white;
+            box-shadow: var(--shadow);
+        }
+
+        .partnership-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 16px;
+        }
+
+        .partnership-card h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--black);
+        }
+
+        .partnership-card p {
+            font-size: 0.9rem;
+            color: var(--gray-600);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            color: rgba(255,255,255,.6);
+            padding: 64px 24px 32px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: white;
+            margin-bottom: 16px;
+        }
+
+        .footer-brand span {
+            color: var(--primary);
+        }
+
+        .footer-desc {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            max-width: 300px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-col a {
+            color: rgba(255,255,255,.6);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-col a:hover {
+            color: white;
+        }
+
+        .footer-col a i {
+            font-size: 0.7rem;
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,.1);
+            padding-top: 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-bottom-links a {
+            color: rgba(255,255,255,.4);
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+
+        .footer-bottom-links a:hover {
+            color: rgba(255,255,255,.8);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background: white;
+            border-bottom: 1px solid var(--gray-200);
+            padding: 24px;
+            z-index: 999;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 16px;
+            color: var(--gray-800);
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .mobile-menu a:last-child {
+            border-bottom: none;
+            background: var(--primary);
+            color: white;
+            border-radius: var(--radius);
+            margin-top: 16px;
+            text-align: center;
+        }
+
+        @media (max-width: 968px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .help-options {
+                grid-template-columns: 1fr;
+            }
+
+            .donate-content,
+            .volunteer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .partnership-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 99px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all var(--transition);
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 16px rgba(232,98,42,.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-white {
+            background: white;
+            color: var(--primary);
+        }
+
+        .btn-white:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,.2);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--black);
+            border: 2px solid var(--gray-200);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline-white {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255,255,255,.5);
+        }
+
+        .btn-outline-white:hover {
+            background: white;
+            color: var(--primary);
+            border-color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-hand-holding-heart"></i>
+                </div>
+                Feed<span>theStreet</span>
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="programs.html">What We Do</a></li>
+                <li><a href="impact.html">Impact</a></li>
+                <li><a href="get-involved.html">Get Involved</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+            </ul>
+
+            <button class="mobile-menu-btn" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="about.html">About Us</a>
+        <a href="programs.html">What We Do</a>
+        <a href="impact.html">Impact</a>
+        <a href="get-involved.html">Get Involved</a>
+        <a href="events.html">Events</a>
+        <a href="contact.html">Contact Us</a>
+    </div>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <div class="section-label">Take Action</div>
+            <h1>Get Involved</h1>
+            <p>Whether you give, serve, or partner — your contribution fuels a hunger-free future for vulnerable communities in Lilongwe.</p>
+        </div>
+    </header>
+
+    <!-- Ways to Help -->
+    <section class="ways-to-help">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 16px;">
+                <div class="section-label">Three Ways to Help</div>
+                <h2 class="section-title" style="margin-bottom: 0;">How You Can Make a Difference</h2>
+            </div>
+
+            <div class="help-options">
+                <div class="help-card">
+                    <div class="help-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Donate</h3>
+                    <p>Your donation funds meals, logistics, and outreach programs. Even a small amount can feed a family for a day.</p>
+                    <a href="#donate" class="btn btn-primary">
+                        Donate Now
+                        <i class="fas fa-arrow-down"></i>
+                    </a>
+                </div>
+
+                <div class="help-card">
+                    <div class="help-icon">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <h3>Volunteer</h3>
+                    <p>Join our growing network of passionate volunteers. Help with distribution events, meal prep, and community outreach.</p>
+                    <a href="#volunteer" class="btn btn-outline">
+                        Sign Up
+                        <i class="fas fa-arrow-down"></i>
+                    </a>
+                </div>
+
+                <div class="help-card">
+                    <div class="help-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Partner</h3>
+                    <p>Align your organization with our mission through corporate partnerships, sponsorships, and community grants.</p>
+                    <a href="#partner" class="btn btn-outline">
+                        Learn More
+                        <i class="fas fa-arrow-down"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Donate Section -->
+    <section class="donate-section" id="donate">
+        <div class="container">
+            <div class="donate-content">
+                <div class="donate-info">
+                    <div class="section-label">Support Our Work</div>
+                    <h2 class="section-title">Make a Donation</h2>
+                    <h3>How to Donate</h3>
+                    <p>Your generosity directly impacts lives. We accept donations through multiple convenient methods:</p>
+                    
+                    <ul class="donate-methods">
+                        <li>
+                            <i class="fas fa-mobile-alt"></i>
+                            <div>
+                                <strong>Mobile Money</strong>
+                                <span>Airtel Money / TNM Mpamba</span>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-university"></i>
+                            <div>
+                                <strong>Bank Transfer</strong>
+                                <span>Direct bank deposit available</span>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-hand-holding-usd"></i>
+                            <div>
+                                <strong>Direct Support</strong>
+                                <span>During outreach activities</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="donation-types">
+                    <h3>What You Can Donate</h3>
+                    <ul class="donation-list">
+                        <li>
+                            <i class="fas fa-money-bill-wave"></i>
+                            <span><strong>Money</strong> - Funds meals and logistics</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-utensils"></i>
+                            <span><strong>Food</strong> - Non-perishable items, ingredients</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-tshirt"></i>
+                            <span><strong>Clothes & Shoes</strong> - New or gently used</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-bed"></i>
+                            <span><strong>Blankets</strong> - Essential for cold nights</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-box-open"></i>
+                            <span><strong>Basic Necessities</strong> - Hygiene items, etc.</span>
+                        </li>
+                    </ul>
+                    
+                    <div style="margin-top: 24px; padding: 20px; background: var(--primary-light); border-radius: var(--radius);">
+                        <p style="margin: 0; font-size: 0.9rem; color: var(--black);"><i class="fas fa-info-circle" style="color: var(--primary); margin-right: 8px;"></i>All donations are used to buy food, prepare meals, and support outreach programs.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Volunteer Section -->
+    <section class="volunteer-section" id="volunteer">
+        <div class="container">
+            <div class="volunteer-content">
+                <div class="volunteer-info">
+                    <div class="section-label">Join Our Team</div>
+                    <h2 class="section-title">Volunteer With Us</h2>
+                    <h3>Become a Volunteer</h3>
+                    <p>We operate mainly through dedicated volunteers from the community who are passionate about helping others. Join our growing network and make a real difference.</p>
+                    
+                    <ul class="volunteer-benefits">
+                        <li><i class="fas fa-check-circle"></i> Help with distribution events</li>
+                        <li><i class="fas fa-check-circle"></i> Assist with meal preparation</li>
+                        <li><i class="fas fa-check-circle"></i> Participate in community outreach</li>
+                        <li><i class="fas fa-check-circle"></i> Connect with like-minded individuals</li>
+                        <li><i class="fas fa-check-circle"></i> Make a tangible impact</li>
+                    </ul>
+
+                    <p style="font-size: 0.95rem; color: var(--gray-600);"><i class="fas fa-info-circle" style="color: var(--primary); margin-right: 8px;"></i>Anyone interested can join by contacting us through phone or social media.</p>
+                </div>
+
+                <div class="volunteer-form">
+                    <h3>Sign Up to Volunteer</h3>
+                    <form onsubmit="event.preventDefault(); alert('Thank you for your interest! We will contact you soon.');">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="tel" placeholder="Enter your phone number" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" placeholder="Enter your email">
+                        </div>
+                        <div class="form-group">
+                            <label>How would you like to help?</label>
+                            <select>
+                                <option>Meal Preparation</option>
+                                <option>Distribution Events</option>
+                                <option>Outreach Activities</option>
+                                <option>Administrative Support</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Message (Optional)</label>
+                            <textarea placeholder="Tell us about yourself or any questions you have"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                            Submit Application
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partnership Section -->
+    <section class="partnership-section" id="partner">
+        <div class="container">
+            <div class="partnership-content">
+                <div class="section-label">Collaborate</div>
+                <h2 class="section-title">Partner With Us</h2>
+                <p>We currently work with individual donors and community well-wishers. We are open to partnerships with NGOs, companies, and individuals willing to support our mission.</p>
+
+                <div class="partnership-grid">
+                    <div class="partnership-card">
+                        <i class="fas fa-building"></i>
+                        <h4>Corporate Partners</h4>
+                        <p>Align your CSR goals with our mission</p>
+                    </div>
+                    <div class="partnership-card">
+                        <i class="fas fa-hands-helping"></i>
+                        <h4>NGO Collaboration</h4>
+                        <p>Join forces to amplify impact</p>
+                    </div>
+                    <div class="partnership-card">
+                        <i class="fas fa-user-tie"></i>
+                        <h4>Individual Sponsors</h4>
+                        <p>Make a personal commitment to change</p>
+                    </div>
+                </div>
+
+                <div style="background: var(--gray-50); padding: 40px; border-radius: var(--radius-lg); text-align: left;">
+                    <h3 style="margin-bottom: 16px; color: var(--black);">Current Partners</h3>
+                    <p style="color: var(--gray-600); margin-bottom: 24px;">We are grateful to work with:</p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+                        <span style="background: white; padding: 12px 20px; border-radius: 99px; font-weight: 500; color: var(--gray-800); border: 1px solid var(--gray-200);"><i class="fas fa-heart" style="color: var(--primary); margin-right: 8px;"></i>Individual Donors</span>
+                        <span style="background: white; padding: 12px 20px; border-radius: 99px; font-weight: 500; color: var(--gray-800); border: 1px solid var(--gray-200);"><i class="fas fa-users" style="color: var(--primary); margin-right: 8px;"></i>Community Well-Wishers</span>
+                    </div>
+                </div>
+
+                <div style="margin-top: 40px;">
+                    <a href="contact.html" class="btn btn-primary">
+                        <i class="fas fa-envelope"></i>
+                        Discuss Partnership
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-brand">
+                        <i class="fas fa-hand-holding-heart" style="color: var(--primary);"></i>
+                        Feed<span>theStreet</span>
+                    </div>
+                    <p class="footer-desc">Ending hunger on the streets of Lilongwe through compassionate action, community partnership, and transparent impact.</p>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="programs.html"><i class="fas fa-chevron-right"></i> Programs</a></li>
+                        <li><a href="impact.html"><i class="fas fa-chevron-right"></i> Our Impact</a></li>
+                        <li><a href="events.html"><i class="fas fa-chevron-right"></i> Events</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Get Involved</h4>
+                    <ul>
+                        <li><a href="get-involved.html#donate"><i class="fas fa-chevron-right"></i> Donate</a></li>
+                        <li><a href="get-involved.html#volunteer"><i class="fas fa-chevron-right"></i> Volunteer</a></li>
+                        <li><a href="get-involved.html#partner"><i class="fas fa-chevron-right"></i> Partner</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul>
+                        <li><a href="tel:+265999454328"><i class="fas fa-phone"></i> +265 999 454 328</a></li>
+                        <li><a href="mailto:mwendamygo@gmail.com"><i class="fas fa-envelope"></i> mwendamygo@gmail.com</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Lilongwe, Malawi</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <span>© 2026 Feed the Street Charity Organisation. All rights reserved.</span>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Use</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('mobileMenu').classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
